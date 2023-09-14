@@ -1,69 +1,15 @@
-html, body {
-  margin: 0;
+Canvas{
+    background-color: #000;
+    border: 1px solid #fbfafa;
+    margin: 0 auto;
+    display: block;
+    width: 99%;
+    height: 95%;
+    position: absolute;
 }
 
-html {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  height: 100%;
+body{
+    background-color: rgb(37, 37, 37);
 }
 
-body {
-  overflow: hidden;
-  height: inherit;
-  background-color: rgb(28, 28, 28);
-}
 
-h1 {
-  font-size: 2rem;
-  letter-spacing: -1px;
-  position: absolute;
-  margin: 0;
-  top: -4px;
-  right: 5px;
-  justify-content: center;
-  align-items: center;
-  color: transparent;
-  text-shadow: 0 0 4px white;
-}
-
-canvas {
-  display: block;
-  background-color: rgb(87, 87, 87);
-  justify-content: center !important;
-
-}
-
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-}
-
-.div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 10%;
-}
-
-.center-div-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100px;
-}
-
-.centertext{
-  text-align: center;
-  justify-content: center;
-  align-items: center ;
-  color: white;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-}
