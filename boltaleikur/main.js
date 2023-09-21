@@ -9,6 +9,10 @@ const height = myCanvas.height = window.innerHeight;
 const FullScreenButton = document.getElementById('Fullscreen');
 
 
+const audioElement = new Audio("low-impactwav-14905.mp3");
+
+
+
 class Shape {
     constructor(x, y, velX, velY) {
         this.x = x;
@@ -52,10 +56,11 @@ class playerball extends Shape {
 }
 
 class npcball extends Shape {
-    constructor(x, y, radius, color) {
+    constructor(x, y, radius, color, audioElement) {
         super(x, y, 1, 1);
         this.radius = radius;
         this.color = color; // Use the provided color
+        this.myAudioElement = audioElement; // Store the audio element
     }
     draw() {
         ctx.beginPath();
@@ -83,12 +88,15 @@ class npcball extends Shape {
         let distance = Math.sqrt(dx * dx + dy * dy);
         if (distance < player.radius + this.radius) {
             window.navigator.vibrate(200);
+            this.myAudioElement.play(); // Access the audio element through 'this'
+            //console.log("colision");
         }
     }
+
 }
 
 const player = new playerball(100, 100, 20, "blue");
-const npc = new npcball(200, 200, 30, "green");
+const npc = new npcball(200, 200, 30, "green", audioElement);
 
 window.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowUp') {
@@ -141,12 +149,18 @@ function forceLandscapeMode() {
 forceLandscapeMode();
 
 
+// i need to make so my playerball can move with MotionEvent/devicemotion event
 
-
-
-
-
-
+function handleMotionEvent(event) {
+    // Extract the acceleration components from the event
+    let accX = event.accelerationIncludingGravity.x;
+    let accY = event.accelerationIncludingGravity.y;
+    let accZ = event.accelerationIncludingGravity.z;
+    // Use the acceleration to manipulate the velocity of the ball   
+    player.velX = accX;
+    player.velY = accY;
+}
+ 
 
 
 function loop() {
@@ -157,6 +171,9 @@ function loop() {
     npc.draw();
     player.move();
     npc.move();
+    npc.colisionDetect();
+
+    // Other Function calls
 
     requestAnimationFrame(loop);
 }
