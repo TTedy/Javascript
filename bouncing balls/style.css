@@ -31,3 +31,45 @@ p {
   right: 5px;
   color: #aaa;
 }
+
+/* Container for canvas and buttons */
+.canvas-container {
+  position: relative;
+}
+
+/* Container for touchpad buttons */
+.button-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Make the container cover the canvas */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.touchpad-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  background: #eee;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  outline: none;
+  margin: 0 5px;
+}
+
+
+.touchpad-button:hover {
+  background: #ddd;
+}
+
+
+.touchpad-button:focus,
+.touchpad-button:active {
+  outline: none;
+}
