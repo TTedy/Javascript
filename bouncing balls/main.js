@@ -96,28 +96,6 @@ window.addEventListener('load', function() {
 
   }
 
-  // function powerpellets() {
-
-  function powerpellets () {
-    const powerpellets = [];
-    while (powerpellets.length < 4) {
-      const size = 10;
-      const powerpellet = new Powerpellet(
-        // powerpellet position always drawn at least one powerpellet width
-        // away from the edge of the canvas, to avoid drawing errors
-        random(0 + size, width - size),
-        random(0 + size, height - size),
-        random(-7, 7),
-        random(-7, 7),
-        randomRGB(),
-        size
-      );
-      powerpellets.push(powerpellet);
-      count++;
-      para.textContent = 'Powerpellet count: ' + count;
-    }
-  }
-
   class EvilCircle extends Shape {
     constructor(x, y) {
       super(x, y, 20, 20);
@@ -201,8 +179,6 @@ window.addEventListener('load', function() {
       ctx.restore(); // Restore the previous transformation state
     }
     
-    
-
     checkBounds() {
       if ((this.x + this.size) >= width) {
         this.x -= this.size;
@@ -281,13 +257,5 @@ window.addEventListener('load', function() {
     requestAnimationFrame(loop);
   }
 
-  window.addEventListener('resize', function() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
   loop();
-
 });
-
-
