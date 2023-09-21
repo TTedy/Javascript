@@ -10,8 +10,16 @@
   <body>
     <h1>bouncing balls</h1>
     <p>Ball count: </p>
-    <canvas></canvas>
-
+    <p id="dotCount">Pac-Man Dots: 0</p>
+    <div class="canvas-container">
+      <canvas></canvas>
+      <div id="touchpad" class="button-container">
+        <button id="up" class="touchpad-button">Up</button>
+        <button id="left" class="touchpad-button">Left</button>
+        <button id="right" class="touchpad-button">Right</button>
+        <button id="down" class="touchpad-button">Down</button>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
