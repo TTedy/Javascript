@@ -173,6 +173,8 @@ function loop() {
     npc.move();
     npc.colisionDetect();
 
+
+    window.addEventListener('devicemotion', handleMotionEvent);
     // Other Function calls
 
     requestAnimationFrame(loop);
