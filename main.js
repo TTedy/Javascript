@@ -131,17 +131,17 @@ FullScreenButton.addEventListener('click', ToggleFullScreen);
 
 
 function forceLandscapeMode() {
-    if (window.screen && window.screen.orientation) {
-        if (window.screen.orientation.type.startsWith('portrait')) {
-            console.log('Changing orientation to landscape.');
-            screen.orientation.lock('landscape-primary')
-                .then(() => {
-                    console.log('Screen orientation is locked to landscape.');
-                })
-                .catch((error) => {
-                    console.error('Failed to lock screen orientation:', error);
-                });
-        }
+    // Check if the screen width is less than the height (indicating portrait mode)
+    if (window.innerWidth < window.innerHeight) {
+        console.log('Changing orientation to landscape.');
+        // Lock the screen orientation to landscape mode
+        screen.orientation.lock('landscape-primary')
+            .then(() => {
+                console.log('Screen orientation is locked to landscape.');
+            })
+            .catch((error) => {
+                console.error('Failed to lock screen orientation:', error);
+            });
     }
 }
 
