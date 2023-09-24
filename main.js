@@ -146,7 +146,6 @@ function forceLandscapeMode() {
 }
 
 // Call the function to force landscape mode
-forceLandscapeMode();
 
 
 // i need to make so my playerball can move with MotionEvent/devicemotion event
@@ -172,7 +171,7 @@ function loop() {
     player.move();
     npc.move();
     npc.colisionDetect();
-
+    forceLandscapeMode();
 
     window.addEventListener('devicemotion', handleMotionEvent);
     // Other Function calls
