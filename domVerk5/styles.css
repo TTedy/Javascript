@@ -1,0 +1,103 @@
+/* Shopping List CSS with Custom Palette */
+
+
+:root{
+    --text: #fefafc;
+    --background: #120207;
+    --primary: #0f7157;
+    --secondary: #041920;
+    --accent: #1cd447;
+  }
+
+
+body {
+    background-color: var(--background); /* Dark background color */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text); /* Light text color */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.content {
+    padding: 15px;
+    background-color: var(--background); /* Dark background for content */
+}
+
+.shopping-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: var(--primary);
+    background-blend-mode: darken;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px; /* Reduced the maximum width for better readability */
+    border-radius: 10px; /* Rounded corners for the list */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    margin: 0 auto; /* Center the list */
+    padding: 15px;
+    max-width: 75%;
+    max-height: 120%;
+}
+
+.logo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px; /* Larger font size for the logo */
+    line-height: 1.5;
+    color: var(--accent); /* Accent color for the logo text */
+    margin-bottom: 15px; /* Added some space below the logo */
+    font-family: poppins;
+}
+
+.items {
+    background-color: var(--text); /* Light background for items */
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px; /* Slight border radius for items */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to items */
+
+}
+
+.items-ul{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+
+}
+
+.button-left, .button-right {
+    background-color: var(--secondary); /* Secondary color for buttons */
+    color: var(--text); /* Light text color for buttons */
+    width: 50%;
+    max-width: 200px; /* Reduced the maximum width for better button sizing */
+    height: 40px; /* Increased the button height for better clickability */
+    text-align: center; /* Center-align button text */
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners for buttons */
+    margin: 0.5em;
+}
+
+.button-right {
+    background-color: var(--accent); /* Accent color for the right button */
+}
+
+.flextwobuttons {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    margin-bottom: 15px;
+}
