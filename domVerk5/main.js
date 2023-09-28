@@ -48,12 +48,12 @@ function removeItem() {
       // Remove the item from the list and the array
       shoppingList.items.splice(index, 1);
       shoppingList.total--;
-      displayItems();
-    } else {
-      alert("Item not found in the list.");
+        displayItems();
+      } else {
+        alert("Item not found in the list.");
+      }
     }
   }
-}
 
 // Function to calculate the total price
 function totalprice() {
