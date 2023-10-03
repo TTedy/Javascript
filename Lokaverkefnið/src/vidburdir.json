@@ -1,0 +1,72 @@
+[
+    {
+        "verd_vidburds": 7500,
+        "nafn_vidburds": "Sjónleikarhátíð",
+        "vefslod_myndar": "https://example.com/sjonleikarhatid.jpg",
+        "dagsetning_vidburds": "2023-06-25",
+        "stadsetning_vidburds": "Akranes"
+    },
+    {
+        "dagsetning_vidburds": "2023-07-15",
+        "nafn_vidburds": "Sumarhátíðin",
+        "stadsetning_vidburds": "Akureyri",
+        "verd_vidburds": 10000,
+        "vefslod_myndar": "https://example.com/sumarhatidin.jpg"
+    },
+    {
+        "vefslod_myndar": "https://example.com/thjodhatidin.jpg",
+        "verd_vidburds": 12000,
+        "dagsetning_vidburds": "2023-08-04",
+        "stadsetning_vidburds": "Vestmannaeyjar",
+        "nafn_vidburds": "Þjóðhátíðin"
+    },
+    {
+        "vefslod_myndar": "https://example.com/sjomannadagurinn.jpg",
+        "nafn_vidburds": "Sjómannadagurinn",
+        "stadsetning_vidburds": "Húsavík",
+        "verd_vidburds": 7000,
+        "dagsetning_vidburds": "2023-06-08"
+    },
+    {
+        "stadsetning_vidburds": "Selfoss",
+        "vefslod_myndar": "https://example.com/blomasettendur.jpg",
+        "dagsetning_vidburds": "2023-05-10",
+        "verd_vidburds": 6000,
+        "nafn_vidburds": "Blómasettendur"
+    },
+    {
+        "nafn_vidburds": "Tónleikarhelgi",
+        "vefslod_myndar": "https://example.com/tonleikarhelgi.jpg",
+        "dagsetning_vidburds": "2023-09-15",
+        "verd_vidburds": 7500,
+        "stadsetning_vidburds": "Akureyri"
+    },
+    {
+        "nafn_vidburds": "Rás Reykjavík",
+        "verd_vidburds": 8000,
+        "stadsetning_vidburds": "Reykjavík",
+        "dagsetning_vidburds": "2023-09-02",
+        "vefslod_myndar": "https://example.com/rasreykjavik.jpg"
+    },
+    {
+        "stadsetning_vidburds": "Ísafjörður",
+        "nafn_vidburds": "Veturhátíðin",
+        "vefslod_myndar": "https://example.com/veturhatidin.jpg",
+        "verd_vidburds": 9000,
+        "dagsetning_vidburds": "2023-11-30"
+    },
+    {
+        "vefslod_myndar": "https://example.com/folkhatidin.jpg",
+        "stadsetning_vidburds": "Egilsstaðir",
+        "verd_vidburds": 8500,
+        "nafn_vidburds": "Folkhátíðin",
+        "dagsetning_vidburds": "2023-07-20"
+    },
+    {
+        "vefslod_myndar": "https://example.com/jolakonsert.jpg",
+        "dagsetning_vidburds": "2023-12-20",
+        "nafn_vidburds": "Jólakonsert",
+        "verd_vidburds": 5000,
+        "stadsetning_vidburds": "Höfn í Hornafirði"
+    }
+]
