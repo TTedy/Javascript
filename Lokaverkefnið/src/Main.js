@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     Start();
   });
   
-
 function Start(){
   console.log('Start');
 
   async function fetchText() {
     let response = await fetch('./vidburdir.json');
+    console.log("fetchText")
 
     console.log(response.status); // 200
     console.log(response.statusText); // OK
@@ -20,34 +20,42 @@ function Start(){
             let jsonObj = JSON.parse(data);
             // Handle jsonObj, which is now a JavaScript object.
             console.log(jsonObj);
+            for (let i = 0; i < jsonObj.length; i++) {
+              //console.log(jsonObj[i].item);
+              //console.log(jsonObj[i].price);
+              console.log("");
+              console.log("");
+              console.log(jsonObj[i])
+              template([jsonObj[i]]); // Pass the object as an array
+            }
+            
+
         } catch (error) {
             console.error('Error parsing JSON:', error);
         }
     } else {
         console.log('Error');
     }
-}
+  }
 
-fetchText();
+  fetchText();
 
 
 // data er array með item og price
 function template(data) {
-  let ulNode = document.createElement('ul');
+  let ulNode = document.createElement('ul'); // Remove the space after 'ul'
   let nodes = data.map(obj => {
     let li = document.createElement('li');
-    li.textContent = `${obj.item}: ${obj.price} kr.`;
+    li.textContent = `${obj.verd_vidburds}: ${obj.stadsetning_vidburds} ${obj.nafn_vidburds} ${obj.dagsetning_vidburds} ${obj.vefslod_myndar}`;
     return li;
   });
   ulNode.append(...nodes); // Bætum li við ul með append og spread syntax.
-  document.body.append(ulNode); // Birtum lista í html.
+  document.getElementById('maincontent').append(ulNode); // Add single quotes around 'maincontent'
 }
 
-for (let i = 0; i < jsonObj.length; i++) {
-  console.log(jsonObj[i].item);
-  console.log(jsonObj[i].price);
-  template(jsonObj[i]);
-}
+
+
+
 
 
 
