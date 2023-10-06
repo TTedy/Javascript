@@ -7,18 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'text': 'rgb(5, 25, 46)',
-        'background': 'rgb(237, 245, 253)',
-        'primary': 'rgb(239, 181, 123)',
-        'secondary': 'rgb(252, 252, 232)',
-        'accent': 'rgb(231, 50, 50)',
+        'text': '#060902',
+        'background': '#f1f4f2',
+        'primary': '#BBF7D0',
+        'secondary': '#AEEAC2',
+        'accent': '#0E83BE',
        },       
     },      
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/container-queries'),
   ],
 }
