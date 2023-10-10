@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Your code here
     console.log('DOM is ready');
-    Start();
+    start();
   });
   
-function Start(){
+function start(){
   console.log('Start');
 
   async function fetchText() {
@@ -43,9 +43,9 @@ function Start(){
 
 // data er array með item og price
 function template(data) {
-  let ulNode = document.createElement('ul'); // Remove the space after 'ul'
+  let ulNode = document.createElement('div'); // Remove the space after 'ul'
   let nodes = data.map(obj => {
-    let li = document.createElement('li');
+    let li = document.createElement('div');
     li.textContent = `${obj.verd_vidburds}: ${obj.stadsetning_vidburds} ${obj.nafn_vidburds} ${obj.dagsetning_vidburds} ${obj.vefslod_myndar}`;
     return li;
   });
