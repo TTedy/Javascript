@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Your code here
     console.log('DOM is ready');
-    Start();
+    start();
   });
   
-function Start(){
+function start(){
   console.log('Start');
 
   async function fetchText() {
