@@ -47,7 +47,33 @@ function start(){
         i.addEventListener('input', function () {
             const selectedValue = parseFloat(i.value);
             o.innerHTML = selectedValue;
+            updateDisplay(selectedValue);
+        });
 
+        // Add event listener for search input
+        document.getElementById('search').addEventListener('input', function() {
+            const searchText = document.getElementById('search').value;
+            updateDisplayFromSearch(searchText);
+        });
+
+
+        // Add an event listener for the date input
+        document.getElementById('date').addEventListener('input', function() {
+            const inputDateText = document.getElementById('date').value;
+            const inputDate = new Date(inputDateText); // Parse the input date
+
+            // Convert the input date to Icelandic date format
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const icelandicDate = inputDate.toLocaleDateString('is-IS', options);
+
+            // Update the input value with the Icelandic date format
+            document.getElementById('date').value = icelandicDate;
+
+            // Update the display using the Icelandic date
+            updateDisplayFromDate(icelandicDate);
+        });
+
+        function updateDisplay(selectedValue) {
             // Hide or show elements based on the selected value
             const elementsToToggle = document.querySelectorAll('.itemToRemove');
             elementsToToggle.forEach(element => {
@@ -58,7 +84,51 @@ function start(){
                     element.style.display = 'none'; // Hide the element
                 }
             });
-        });
+        }
+
+        function updateDisplayFromSearch(searchText) {
+            // Hide or show elements based on the search text
+            const elementsToToggle = document.querySelectorAll('.itemToRemove');
+            elementsToToggle.forEach(element => {
+                const eventText = element.textContent.toLowerCase();
+                if (eventText.includes(searchText.toLowerCase())) {
+                    element.style.display = 'block'; // Show the element
+                } else {
+                    element.style.display = 'none'; // Hide the element
+                }
+            });
+        }
+
+        function updateDisplayFromDate(dateText) {
+            console.log(jsonObj[1].dagsetning_vidburds,"inni")
+            console.log(dateText,"inni")
+            // Parse the selected date in the Icelandic date format
+            const selectedDate = new Date(dateText + 'T00:00:00.000Z');
+        
+            // Hide or show elements based on the selected date
+            const elementsToToggle = document.querySelectorAll('.itemToRemove');
+            elementsToToggle.forEach(element => {
+                const eventDateText = element.getAttribute('data-date'); // Assuming you have a data-date attribute with the event date in Icelandic date format
+        
+                // Parse the event date in the Icelandic date format
+                const eventDate = new Date(eventDateText + 'T00:00:00.000Z');
+        
+                if (eventDate >= selectedDate) {
+                    element.style.display = 'block'; // Show the element (event is on or after the selected date)
+                } else {
+                    element.style.display = 'none'; // Hide the element (event is before the selected date)
+                }
+            });
+        }
+        
+        
+
+
+
+
+
+
+
 
         
         // Format dates in Icelandic
@@ -73,20 +143,16 @@ function start(){
         for (let i = 0; i < jsonObj.length; i++) {
             template([jsonObj[i]]); // Pass the object as an array
         }        
-    } 
+        console.log(jsonObj[1].dagsetning_vidburds)
+    }
     
-    
+
     catch (error) {
         console.error('Error:', error);
     }
 }
 
 fetchText();
-
-
-
-  // data er array með item og price
-
 
   function template(data) {
     let divContainer = document.createElement('div');
