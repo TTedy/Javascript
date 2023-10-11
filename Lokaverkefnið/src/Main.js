@@ -17,26 +17,48 @@ function start(){
     if (response.status === 200) {
         let data = await response.text();
         try {
+            const currentDate = new Date();
             let jsonObj = JSON.parse(data);
-            // Handle jsonObj, which is now a JavaScript object.
+            
+            // Filter events so the closest one is on top
+            jsonObj = jsonObj.filter(item => {
+              const eventDate = new Date(item.dagsetning_vidburds);
+              return eventDate >= currentDate;
+            });
+            // now i need to short it so on top is the closest to current date
+            jsonObj.sort((a, b) => {
+              const dateA = new Date(a.dagsetning_vidburds);
+              const dateB = new Date(b.dagsetning_vidburds);
+              return dateA - dateB;
+            });
+
+            // i need the datas to be in the icelandic format
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            jsonObj.forEach(item => {
+              const date = new Date(item.dagsetning_vidburds);
+              item.dagsetning_vidburds = date.toLocaleDateString('is-IS', options);
+            });
+
+
             console.log(jsonObj);
             for (let i = 0; i < jsonObj.length; i++) {
-              //console.log(jsonObj[i].item);
-              //console.log(jsonObj[i].price);
-              // console.log("");
-              // console.log("");
-              // console.log(jsonObj[i])
               template([jsonObj[i]]); // Pass the object as an array
             }
 
             const maxVal = Math.max(...jsonObj.map(item => item.verd_vidburds));
             const minVal = Math.min(...jsonObj.map(item => item.verd_vidburds));
                         
-            let i = document.querySelector('input'),
+            let i = document.getElementById('peningur'),
             o = document.querySelector('output');
             
+        
+
             i.min = minVal;
             i.max = maxVal;
+
+            // i need to have steps in my slider so i can choose the price also need it to be dynamic with the i.maxval and i.minval
+            i.step = 1000;
+
 
 
             i.value = maxVal; 
@@ -45,7 +67,6 @@ function start(){
             i.addEventListener('input', function () {
               const selectedValue = parseFloat(i.value);
               o.innerHTML = selectedValue;
-          
               // Hide or show elements based on the selected value
               const elementsToToggle = document.querySelectorAll('.itemToRemove');
               elementsToToggle.forEach(element => {
