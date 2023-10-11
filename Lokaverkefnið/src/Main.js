@@ -8,89 +8,81 @@ function start(){
   console.log('Start');
 
   async function fetchText() {
-    let response = await fetch('./vidburdir.json');
-    console.log("fetchText")
-
-    console.log(response.status); // 200
-    console.log(response.statusText); // OK
-
-    if (response.status === 200) {
-        let data = await response.text();
-        try {
-            const currentDate = new Date();
-            let jsonObj = JSON.parse(data);
-            
-            // Filter events so the closest one is on top
-            jsonObj = jsonObj.filter(item => {
-              const eventDate = new Date(item.dagsetning_vidburds);
-              return eventDate >= currentDate;
-            });
-            // now i need to short it so on top is the closest to current date
-            jsonObj.sort((a, b) => {
-              const dateA = new Date(a.dagsetning_vidburds);
-              const dateB = new Date(b.dagsetning_vidburds);
-              return dateA - dateB;
-            });
-
-            // i need the datas to be in the icelandic format
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            jsonObj.forEach(item => {
-              const date = new Date(item.dagsetning_vidburds);
-              item.dagsetning_vidburds = date.toLocaleDateString('is-IS', options);
-            });
-
-
-            console.log(jsonObj);
-            for (let i = 0; i < jsonObj.length; i++) {
-              template([jsonObj[i]]); // Pass the object as an array
-            }
-
-            const maxVal = Math.max(...jsonObj.map(item => item.verd_vidburds));
-            const minVal = Math.min(...jsonObj.map(item => item.verd_vidburds));
-                        
-            let i = document.getElementById('peningur'),
-            o = document.querySelector('output');
-            
-        
-
-            i.min = minVal;
-            i.max = maxVal;
-
-            // i need to have steps in my slider so i can choose the price also need it to be dynamic with the i.maxval and i.minval
-            i.step = 1000;
-
-
-
-            i.value = maxVal; 
-            o.innerHTML = maxVal; 
-
-            i.addEventListener('input', function () {
-              const selectedValue = parseFloat(i.value);
-              o.innerHTML = selectedValue;
-              // Hide or show elements based on the selected value
-              const elementsToToggle = document.querySelectorAll('.itemToRemove');
-              elementsToToggle.forEach(element => {
-                  const verdValue = parseFloat(element.getAttribute('data-verd'));
-                  if (verdValue <= selectedValue) {
-                      element.style.display = 'block'; // Show the element
-                  } else {
-                      element.style.display = 'none'; // Hide the element
-                  }
-              });
-          }, false);
-          
-          
-          
-
-        } catch (error) {
-            console.error('Error parsing JSON:', error);
+    try {
+        // Fetch the JSON data
+        const response = await fetch('./vidburdir.json');
+        if (response.status !== 200) {
+            console.log('Error: Unable to fetch data');
+            return;
         }
-    } else {
-        console.log('Error');
-    }
-  }
 
-  fetchText();
+        // Parse the JSON data
+        const data = await response.text();
+        const currentDate = new Date();
+        let jsonObj = JSON.parse(data);
+
+        // Filter events to keep only future events
+        jsonObj = jsonObj.filter(item => {
+            const eventDate = new Date(item.dagsetning_vidburds);
+            return eventDate >= currentDate;
+        });
+
+        // Sort events by date
+        jsonObj.sort((a, b) => new Date(a.dagsetning_vidburds) - new Date(b.dagsetning_vidburds));
+
+        // Set up the price slider
+        const maxVal = Math.max(...jsonObj.map(item => item.verd_vidburds));
+        const minVal = Math.min(...jsonObj.map(item => item.verd_vidburds));
+        const i = document.getElementById('peningur');
+        const o = document.querySelector('output');
+
+        i.min = minVal;
+        i.max = maxVal;
+        i.step = 1000; // Set the step value for the slider
+
+        i.value = maxVal;
+        o.innerHTML = maxVal;
+
+        // Add event listener for slider input
+        i.addEventListener('input', function () {
+            const selectedValue = parseFloat(i.value);
+            o.innerHTML = selectedValue;
+
+            // Hide or show elements based on the selected value
+            const elementsToToggle = document.querySelectorAll('.itemToRemove');
+            elementsToToggle.forEach(element => {
+                const verdValue = parseFloat(element.getAttribute('data-verd'));
+                if (verdValue <= selectedValue) {
+                    element.style.display = 'block'; // Show the element
+                } else {
+                    element.style.display = 'none'; // Hide the element
+                }
+            });
+        });
+
+        
+        // Format dates in Icelandic
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        jsonObj.forEach(item => {
+            const date = new Date(item.dagsetning_vidburds);
+            item.dagsetning_vidburds = date.toLocaleDateString('is-IS', options);
+        });
+
+        // Display events
+        console.log(jsonObj);
+        for (let i = 0; i < jsonObj.length; i++) {
+            template([jsonObj[i]]); // Pass the object as an array
+        }        
+    } 
+    
+    
+    catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchText();
+
 
 
   // data er array með item og price
