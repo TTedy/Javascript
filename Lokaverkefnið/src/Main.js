@@ -28,7 +28,38 @@ function Start(){
               // console.log(jsonObj[i])
               template([jsonObj[i]]); // Pass the object as an array
             }
+
+            const maxVal = Math.max(...jsonObj.map(item => item.verd_vidburds));
+            const minVal = Math.min(...jsonObj.map(item => item.verd_vidburds));
+                        
+            let i = document.querySelector('input'),
+            o = document.querySelector('output');
             
+            i.min = minVal;
+            i.max = maxVal;
+
+
+            i.value = maxVal; 
+            o.innerHTML = maxVal; 
+
+            i.addEventListener('input', function () {
+              const selectedValue = parseFloat(i.value);
+              o.innerHTML = selectedValue;
+          
+              // Hide or show elements based on the selected value
+              const elementsToToggle = document.querySelectorAll('.itemToRemove');
+              elementsToToggle.forEach(element => {
+                  const verdValue = parseFloat(element.getAttribute('data-verd'));
+                  if (verdValue <= selectedValue) {
+                      element.style.display = 'block'; // Show the element
+                  } else {
+                      element.style.display = 'none'; // Hide the element
+                  }
+              });
+          }, false);
+          
+          
+          
 
         } catch (error) {
             console.error('Error parsing JSON:', error);
@@ -69,22 +100,15 @@ function Start(){
 
       // Append the <a> tag to the container
       divContainer.appendChild(aTag);
+
+      // Inside the template function
+      aTag.classList.add('itemToRemove'); // Add the class
+      aTag.setAttribute('data-verd', obj.verd_vidburds); // Set the data-verd attribute
+
+
+
     });
 
     document.getElementById('maincontent').appendChild(divContainer); // Add single quotes around 'maincontent'
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
