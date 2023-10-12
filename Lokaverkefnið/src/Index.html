@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/dist/output.css" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>happening</title>
-
+  <link href="/dist/output.css" rel="stylesheet"> <!-- mínn eigin tailwind css sem ég þrufti að kompila -->	
+  <script src="https://cdn.tailwindcss.com"></script>  <!-- þarf að hafa þetta þvi teilwind cli kemur ekki með grid eða flex -->
+  <title>Events</title>
 </head>
 <body class="bg-background">
-
   <div class="p-4">
     <div class="container mx-auto ">
       <div class="flex justify-between items-center bg-green-200  border border-green-200 rounded-xl p-2">
@@ -23,8 +21,6 @@
       </div>
     </div>
   </div>
-
-
   <div class="p-7 flex flex-2 gap-1">
     <!-- Left column -->
     <div>
@@ -33,7 +29,6 @@
         <!-- Content for the left column -->
       </div>
     </div>
-  
     <!-- Right column with reduced width aligned to the top and right -->
     <div class="flex flex-col justify-start items-end">
       <div class="bg-secondary rounded-xl p-2 shadow-lg mb-4">
@@ -45,14 +40,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-  
   <script src="Main.js"></script>
 </body>
 </html>
