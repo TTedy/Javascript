@@ -47,7 +47,7 @@ function start(){
         i.addEventListener('input', function () {
             const selectedValue = parseFloat(i.value);
             o.innerHTML = selectedValue;
-            updateDisplay(selectedValue);
+            updateDisplay(selectedValue, getDateFromInput());
         });
 
         // Add event listener for search input
@@ -56,35 +56,60 @@ function start(){
             updateDisplayFromSearch(searchText);
         });
 
-
-        // Add an event listener for the date input
+        // Add event listener for date input
         document.getElementById('date').addEventListener('input', function() {
-            const inputDateText = document.getElementById('date').value;
-            const inputDate = new Date(inputDateText); // Parse the input date
-
-            // Convert the input date to Icelandic date format
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const icelandicDate = inputDate.toLocaleDateString('is-IS', options);
-
-            // Update the input value with the Icelandic date format
-            document.getElementById('date').value = icelandicDate;
-
-            // Update the display using the Icelandic date
-            updateDisplayFromDate(icelandicDate);
+            const dateText = document.getElementById('date').value;
+            const formattedDate = formatDate(dateText);
+            console.log(formattedDate,"toodalido");
+            updateDisplay(getValueFromInput(), formattedDate);
         });
 
-        function updateDisplay(selectedValue) {
-            // Hide or show elements based on the selected value
+        function updateDisplay(selectedValue, selectedDate) {
+            // Hide or show elements based on the selected value and date
             const elementsToToggle = document.querySelectorAll('.itemToRemove');
             elementsToToggle.forEach(element => {
-                const verdValue = parseFloat(element.getAttribute('data-verd'));
-                if (verdValue <= selectedValue) {
-                    element.style.display = 'block'; // Show the element
-                } else {
-                    element.style.display = 'none'; // Hide the element
-                }
+              const verdValue = parseFloat(element.getAttribute('data-verd'));
+              const dateValue = element.getAttribute('data-dags');
+              if (verdValue <= selectedValue && new Date(dateValue) >= new Date(selectedDate)) {
+                element.style.display = 'block'; // Show the element
+              } else {
+                element.style.display = 'none'; // Hide the element
+              }
             });
+          }
+
+          function formatDate(dateText) {
+            let date;
+            if (dateText) {
+                date = new Date(dateText);
+            } else {
+                date = new Date();
+            }
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('is-IS', options);
         }
+
+          function getDateFromInput() {
+            const dateText = document.getElementById('date').value;
+            return formatDate(dateText);
+          }
+          
+          function getValueFromInput() {
+            return parseFloat(i.value);
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         function updateDisplayFromSearch(searchText) {
             // Hide or show elements based on the search text
@@ -99,27 +124,6 @@ function start(){
             });
         }
 
-        function updateDisplayFromDate(dateText) {
-            console.log(jsonObj[1].dagsetning_vidburds,"inni")
-            console.log(dateText,"inni")
-            // Parse the selected date in the Icelandic date format
-            const selectedDate = new Date(dateText + 'T00:00:00.000Z');
-        
-            // Hide or show elements based on the selected date
-            const elementsToToggle = document.querySelectorAll('.itemToRemove');
-            elementsToToggle.forEach(element => {
-                const eventDateText = element.getAttribute('data-date'); // Assuming you have a data-date attribute with the event date in Icelandic date format
-        
-                // Parse the event date in the Icelandic date format
-                const eventDate = new Date(eventDateText + 'T00:00:00.000Z');
-        
-                if (eventDate >= selectedDate) {
-                    element.style.display = 'block'; // Show the element (event is on or after the selected date)
-                } else {
-                    element.style.display = 'none'; // Hide the element (event is before the selected date)
-                }
-            });
-        }
         
         
 
@@ -167,11 +171,16 @@ fetchText();
       let divItem = document.createElement('div');
       divItem.classList.add('bg-primary', 'p-2', 'border', 'border-primary', 'rounded-xl', 'shadow-xl', 'hover:bg-green-400','hover:border-green-400'); // Example classes for item container, customize as needed
 
+      let itemimg = document.createElement('img');
+        itemimg.src = `${obj.vefslod_myndar}`;
+        itemimg.classList.add('w-full', 'h-48', 'object-cover', 'rounded-xl','img'); // Example classes for image, customize as needed
+
       let itemText = document.createElement('p');
-      itemText.textContent = `${obj.verd_vidburds}: ${obj.stadsetning_vidburds} ${obj.nafn_vidburds} ${obj.dagsetning_vidburds}`;
+      itemText.textContent = `${obj.verd_vidburds}: ${obj.stadsetning_vidburds} ${obj.nafn_vidburds} ${obj.dagsetning_vidburds} `;
       itemText.classList.add('text-black'); // Example text color class, customize as needed
 
       // Append the itemText to the <div> inside the <a> tag
+      divItem.appendChild(itemimg);
       divItem.appendChild(itemText);
 
       // Append the <div> (with classes) to the <a> tag
@@ -183,6 +192,7 @@ fetchText();
       // Inside the template function
       aTag.classList.add('itemToRemove'); // Add the class
       aTag.setAttribute('data-verd', obj.verd_vidburds); // Set the data-verd attribute
+      aTag.setAttribute('data-dags', obj.dagsetning_vidburds); // Set the data-verd attribute
 
 
 

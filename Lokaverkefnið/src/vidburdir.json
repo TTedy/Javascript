@@ -2,7 +2,7 @@
     {
         "verd_vidburds": 7500,
         "nafn_vidburds": "Sjónleikarhátíð",
-        "vefslod_myndar": "https://example.com/sjonleikarhatid.jpg",
+        "vefslod_myndar": "wp5609581.png",
         "dagsetning_vidburds": "2023-11-25",
         "stadsetning_vidburds": "Akranes"
     },
@@ -11,17 +11,17 @@
         "nafn_vidburds": "Sumarhátíðin",
         "stadsetning_vidburds": "Akureyri",
         "verd_vidburds": 10000,
-        "vefslod_myndar": "https://example.com/sumarhatidin.jpg"
+        "vefslod_myndar": "wp5609581.png"
     },
     {
-        "vefslod_myndar": "https://example.com/thjodhatidin.jpg",
+        "vefslod_myndar": "wp5609581.png",
         "verd_vidburds": 12000,
         "dagsetning_vidburds": "2023-11-04",
         "stadsetning_vidburds": "Vestmannaeyjar",
         "nafn_vidburds": "Þjóðhátíðin"
     },
     {
-        "vefslod_myndar": "https://example.com/sjomannadagurinn.jpg",
+        "vefslod_myndar": "wp5609581.png",
         "nafn_vidburds": "Sjómannadagurinn",
         "stadsetning_vidburds": "Húsavík",
         "verd_vidburds": 7000,
@@ -29,14 +29,14 @@
     },
     {
         "stadsetning_vidburds": "Selfoss",
-        "vefslod_myndar": "https://example.com/blomasettendur.jpg",
+        "vefslod_myndar": "wp5609581.png",
         "dagsetning_vidburds": "2023-05-10",
         "verd_vidburds": 6000,
         "nafn_vidburds": "Blómasettendur"
     },
     {
         "nafn_vidburds": "Tónleikarhelgi",
-        "vefslod_myndar": "https://example.com/tonleikarhelgi.jpg",
+        "vefslod_myndar": "wp5609581.png",
         "dagsetning_vidburds": "2023-09-15",
         "verd_vidburds": 7500,
         "stadsetning_vidburds": "Akureyri"
@@ -46,24 +46,24 @@
         "verd_vidburds": 8000,
         "stadsetning_vidburds": "Reykjavík",
         "dagsetning_vidburds": "2023-09-02",
-        "vefslod_myndar": "https://example.com/rasreykjavik.jpg"
+        "vefslod_myndar": "wp5609581.png"
     },
     {
         "stadsetning_vidburds": "Ísafjörður",
         "nafn_vidburds": "Veturhátíðin",
-        "vefslod_myndar": "https://example.com/veturhatidin.jpg",
+        "vefslod_myndar": "wp5609581.png",
         "verd_vidburds": 9000,
         "dagsetning_vidburds": "2023-11-30"
     },
     {
-        "vefslod_myndar": "https://example.com/folkhatidin.jpg",
+        "vefslod_myndar": "wp5609581.png",
         "stadsetning_vidburds": "Egilsstaðir",
         "verd_vidburds": 8500,
         "nafn_vidburds": "Folkhátíðin",
         "dagsetning_vidburds": "2023-10-17"
     },
     {
-        "vefslod_myndar": "https://example.com/jolakonsert.jpg",
+        "vefslod_myndar": "wp5609581.png",
         "dagsetning_vidburds": "2023-12-20",
         "nafn_vidburds": "Jólakonsert",
         "verd_vidburds": 5000,
